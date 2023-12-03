@@ -4,6 +4,7 @@ node_modules/
 # Ignore logs and temporary files
 *.log
 *.tmp
+*.json
 
 # Ignore Visual Studio Code configuration
 .vscode/
