@@ -10,4 +10,4 @@ function helpFunc(){
 module.exports={
     helpKey: helpFunc
 }
-console.log(helpFunc());
+// console.log(helpFunc());

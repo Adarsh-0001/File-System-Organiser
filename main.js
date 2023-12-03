@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let inputArray = process.argv.slice(2);
 
 if (inputArray.length < 2) {
@@ -8,11 +9,11 @@ if (inputArray.length < 2) {
 let command = inputArray[0];
 let targetPath = inputArray[1];
 
-let fileSys = require("fs");
-let filePath = require("path");
-let helpObj = require("./help");
-let treeObj = require("./tree");
-let orgObj = require("./organise");
+// let fileSys = require("fs");
+// let filePath = require("path");
+let helpObj = require("./command/help");
+let treeObj = require("./command/tree");
+let orgObj = require("./command/organise");
 
 switch (command){
     case "tree":

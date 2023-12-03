@@ -10,7 +10,7 @@ let types = {
 }
 
 function organiseFunc(dirPath){
-console.log("its a path", dirPath);
+// console.log("its a path", dirPath);
 let destPath;
 if (dirPath == undefined){
     destPath = process.cwd();
@@ -20,8 +20,8 @@ else {
     let doesExist = fileSys.existsSync(dirPath);
     if (doesExist){
         destPath = filePath.join(dirPath, "Organized_Files"); //it will create organized_Files then add to directory/folder
-        if(fileSys.existsSync(dirPath) == false){
-            fileSys.mkdir(destPath);
+        if(fileSys.existsSync(destPath) == false){
+            fileSys.mkdirSync(destPath);
         }
     } else {
         console.log('Kindly enter the correct path');
@@ -33,27 +33,28 @@ organiseHelper(dirPath, destPath);
 
 function organiseHelper(src, dest){
     let childName = fileSys.readdirSync(src);
-    console.log(childName);
+    // console.log(childName);
     for (let i=0; i<childName.length; i++) {
         let childAddress = filePath.join(src, childName[i]);
         let isFile = fileSys.lstatSync(childAddress).isFile();
         if (isFile){
             // console.log(childName[i]);
             let category = getCategory(childName[i]);
-            console.log(childName[i], "belongs to --> " ,category);
+            console.log(childName[i], "belongs to --> ", category);
             sendFiles(childAddress, dest,  category);
         } 
     }
 }
 
-function sendFiles(scrFilePath, dest, category){
+function sendFiles(srcFilePath, dest, category){
     let categoryPath = filePath.join(dest, category);
     if (fileSys.existsSync(categoryPath) == false){
         fileSys.mkdirSync(categoryPath);
     }
-    let fileName = filePath.basename(scrFilePath);
+    let fileName = filePath.basename(srcFilePath);
     let destFilePath = filePath.join(categoryPath, fileName);
-    fileSys.copyFileSync(scrFilePath, destFilePath);
+    fileSys.copyFileSync(srcFilePath, destFilePath);
+    fileSys.unlinkSync(srcFilePath);
     console.log(fileName, "copied to -->", category);
 }
 
@@ -68,7 +69,7 @@ function getCategory(name){
             }
         }
     }
-    return "Checked: file type does'nt found!";
+    return "Not Found! There is some other type of file";
 }
 module.exports={
     organiseKey: organiseFunc
