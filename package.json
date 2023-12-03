@@ -11,13 +11,13 @@
   "bin": {
     "noddy": "main.js"
   },
-  "description": "\"# File-System-Organiser\"",
+  "description": "\"# File-System-Organizer\"",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adarsh-0001/File-System-Organiser.git"
+    "url": "git+https://github.com/Adarsh-0001/File-System-Organizer.git"
   },
   "bugs": {
-    "url": "https://github.com/Adarsh-0001/File-System-Organiser/issues"
+    "url": "https://github.com/Adarsh-0001/File-System-Organizer/issues"
   },
-  "homepage": "https://github.com/Adarsh-0001/File-System-Organiser#readme"
+  "homepage": "https://github.com/Adarsh-0001/File-System-Organizer#readme"
 }
