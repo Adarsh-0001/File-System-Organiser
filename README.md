@@ -1,4 +1,4 @@
-# File System Organiser
+# File System Organizer
 
 File System Manager is a Node.js-based command-line tool for organizing and managing files within a directory. It provides features such as directory tree visualization, file organization, and more.
 
