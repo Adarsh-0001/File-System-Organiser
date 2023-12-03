@@ -1,4 +1,9 @@
+# Ignore node_modules directory
 node_modules/
+
+# Ignore logs and temporary files
 *.log
-/dist/
-/config.js
+*.tmp
+
+# Ignore Visual Studio Code configuration
+.vscode/
