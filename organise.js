@@ -1,6 +1,14 @@
 const fileSys = require('fs');
 const filePath = require("path");
 
+let types = {
+    media: ["mp4", "mkv", "mp3"],
+    archives: ['zip', '7z', 'rar', 'tar', 'gz', 'ar', 'iso', "xz"],
+    documents: ['docs', 'doc', 'pdf', 'xlsx', 'xls', 'odt', 'ods', 'odp', 'odg', 'odf', 'txt', 'ps', 'tex', 'ppt', 'pptx', 'csv'],
+    app: ['exe', 'dmg' , 'pkg', 'deb'],
+    image: ['jpg', 'jpeg', 'png', 'gif', 'webp']
+}
+
 function organiseFunc(dirPath){
 console.log("its a path", dirPath);
 let destPath;
@@ -11,7 +19,7 @@ if (dirPath == undefined){
 else {
     let doesExist = fileSys.existsSync(dirPath);
     if (doesExist){
-        let destPath = filePath.join(dirPath, "Organized_Files"); //it will create organized_Files then add to directory/folder
+        destPath = filePath.join(dirPath, "Organized_Files"); //it will create organized_Files then add to directory/folder
         if(fileSys.existsSync(dirPath) == false){
             fileSys.mkdir(destPath);
         }
@@ -25,14 +33,42 @@ organiseHelper(dirPath, destPath);
 
 function organiseHelper(src, dest){
     let childName = fileSys.readdirSync(src);
-    // console.log(childNames);
+    console.log(childName);
     for (let i=0; i<childName.length; i++) {
         let childAddress = filePath.join(src, childName[i]);
         let isFile = fileSys.lstatSync(childAddress).isFile();
         if (isFile){
-            console.log(childName[i]);
+            // console.log(childName[i]);
+            let category = getCategory(childName[i]);
+            console.log(childName[i], "belongs to --> " ,category);
+            sendFiles(childAddress, dest,  category);
+        } 
+    }
+}
+
+function sendFiles(scrFilePath, dest, category){
+    let categoryPath = filePath.join(dest, category);
+    if (fileSys.existsSync(categoryPath) == false){
+        fileSys.mkdirSync(categoryPath);
+    }
+    let fileName = filePath.basename(scrFilePath);
+    let destFilePath = filePath.join(categoryPath, fileName);
+    fileSys.copyFileSync(scrFilePath, destFilePath);
+    console.log(fileName, "copied to -->", category);
+}
+
+function getCategory(name){
+    let extention = filePath.extname(name);
+    extention = extention.slice(1);
+    for(let type in types){
+        let cTypeArray = types[type];
+        for (let i = 0; i<cTypeArray.length; i++){
+            if (extention == cTypeArray[i]){
+                return type;
+            }
         }
     }
+    return "Checked: file type does'nt found!";
 }
 module.exports={
     organiseKey: organiseFunc

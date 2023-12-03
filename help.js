@@ -6,7 +6,8 @@ function helpFunc(){
         node main.js help
     `)
 }
-// module.exports={
-//     helpKey: helpFunc
-// }
+
+module.exports={
+    helpKey: helpFunc
+}
 console.log(helpFunc());
