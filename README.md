@@ -55,9 +55,6 @@ If you encounter any issues or have suggestions for improvement, feel free to op
 *Thanks to the Node.js and npm communities for their valuable packages.*
 *Special thanks to [@jasbir96](https://github.com/Jasbir96) and OpenAI for language model support.*
 
-```sql
-Copy and paste this markdown content into your README file. Feel free to make any additional modifications or add more details as needed for your project.
-```
 
 
 
